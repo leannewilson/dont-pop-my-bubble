@@ -1,142 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bubbles</title>
-    <link rel='icon' href='favicon.ico' type="image/jpg"/>
-
+    <link rel="icon" href="favicon.ico" type="image/jpg" />
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap');
-        /* grey: #828B94, 
+      @import url("https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap");
+      /* grey: #828B94, 
             blue: #A9D0F5, 
             seafoam: #AFE0D0, 
             darkgreen: #6F9465, 
             lightgreen: #B2E0A4 */
 
-        body {
-            background: #B2E0A4;
-            font-family: 'Teko', san-serif;
-            font-size: 1.5em;
-            overflow: hidden;
-        }
+      body {
+        background: #b2e0a4;
+        font-family: "Teko", san-serif;
+        font-size: 1.5em;
+        overflow: hidden;
+      }
 
-        h1,
-        h4 {
-            text-align: center;
-            margin: 0
-        }
+      h1,
+      h4 {
+        text-align: center;
+        margin: 0;
+      }
 
-        header {
-            display: flex;
-            margin: 0;
-            width: 100%;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
+      header {
+        display: flex;
+        margin: 0;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
 
-        img {
-            width: 75px;
+      img {
+        width: 75px;
+      }
 
-        }
+      canvas {
+        display: block;
+        background: white;
+        border-radius: 25px;
+        margin: auto;
+      }
 
-        canvas {
-            display: block;
-            background: white;
-            border-radius: 25px;
-            margin: auto;
-        }
+      p {
+        font-family: sans-serif !important;
+        font-size: medium;
+        text-align: center;
+        padding-top: 0;
+      }
 
-        p {
-            font-family: sans-serif !important;
-            font-size: medium;
-            text-align: center;
-            padding-top: 0;
-        }
+      a {
+        text-align: center;
+        color: inherit;
+        font-size: 14px;
+        position: absolute;
+        left: 10;
+        top: 10;
+      }
 
-        a {
-            text-align: center;
-            color: inherit;
-            font-size: 14px;
-            position: absolute;
-            left: 10;
-            top: 10
-        }
+      .music {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
+      }
 
-        .music {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            font-size: 14px;
-            padding: 0;
-            margin: 0;
-        }
+      .music p {
+        font-family: "Teko", san-serif;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+      }
 
-        .music p {
-            font-family: "Teko", san-serif;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            
-            
-        }
+      #icon {
+        display: flex;
+        width: 50px;
+        cursor: pointer;
+        padding-left: 5px;
+      }
+      .ml15 {
+        font-weight: 800;
+        font-size: 1.2em;
+        text-transform: normal;
+        letter-spacing: 0.1em;
+        text-align: center;
+      }
 
-        #icon {
-            display: flex;
-            width: 50px;
-            cursor: pointer;
-            padding-left: 5px;
-        }
-        .ml15 {
-            font-weight: 800;
-            font-size: 1.2em;
-            text-transform: normal;
-            letter-spacing: 0.1em;
-            text-align: center;
-            
-          }
-          
-          .ml15 .word {
-            display: inline-block;
-            line-height: .1em;
-          }
+      .ml15 .word {
+        display: inline-block;
+        line-height: 0.1em;
+      }
 
-          h3{
-              text-align: center;
-          }
-        
+      h3 {
+        text-align: center;
+      }
     </style>
+  </head>
 
-</head>
+  <body>
+    <a href="https://github.com/leannewilson/my-bubble-game-js"
+      >The GitHub Repo</a
+    >
 
-<body>
-
-    <a href="https://github.com/mylliejohnson/my-bubble-game-js">The GitHub Repo</a>
-    
     <header>
-        <img src="./images/bubbles.svg">
-        <div>
-            <h1>DON'T POP MY BUBBLE</h1>
-            <h4>By Team Jupiter 🪐</h4>
-        </div>
-        <img src="./images/bubbles.svg">
-
+      <!-- <img src="./images/bubbles.svg"> -->
+      <div>
+        <h1>Don't Pop My Bubble</h1>
+      </div>
+      <!-- <img src="./images/bubbles.svg"> -->
     </header>
 
     <!-- music button -->
     <div>
-        <div class="music">
-            <p>Click here to play/pause the music</p>
-            <img src="./images/play.png" id="icon" alt="music logo">
-        </div>
+      <div class="music">
+        <p>Click here to play/pause the music</p>
+        <img src="./images/play.png" id="icon" alt="music logo" />
+      </div>
 
-        <audio id="bgmusic">
-            <source src="./audio/Luke-Bergs-Take-It-Easy.mp3" type="audio/mp3" loop="loop" />
-        </audio>
+      <audio id="bgmusic">
+        <source
+          src="./audio/Luke-Bergs-Take-It-Easy.mp3"
+          type="audio/mp3"
+          loop="loop"
+        />
+      </audio>
     </div>
 
     <!-- <div>
@@ -147,22 +142,23 @@
   <button type="reset" class="reset" style="display: none">Play Again!</button> -->
 
     <!-- instructions -->
-    <p><strong>INSTRUCTIONS</strong>: Use the arrow keys to move the bubble💭, & avoid the pins📌 to
-        win! You get 3 lives💘</p>
+    <p>
+      <strong>INSTRUCTIONS</strong>: Use the arrow keys to move the bubble, &
+      avoid the pins to win! You get 3 lives.
+    </p>
 
     <canvas width="800" height="500"></canvas>
-   
-      <h3 class="thanks">Thank you for playing 🙏 <br>
-        Don't forget to review our project 🤝
-    </h3>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-      
-</body>
+  </body>
 
-<script src="background.js"></script>
-<script src="main.js"></script>
-<script src="collision.js"></script>
-<script src="collectors.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="highscore.js"></script>
+  <script src="background.js"></script>
+  <script src="main.js"></script>
+  <script src="collision.js"></script>
+  <script src="collectors.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="highscore.js"></script>
 </html>

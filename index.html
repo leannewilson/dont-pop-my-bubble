@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./intro.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
-    <title>🎈Bubble Poppers💉</title>
-</head>
-<body value="PLAY" onclick="play()">
-    <h1 data-text="bubble pop">DON'T POP MY BUBBLE🥺</h1>
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./intro.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:200,100,400"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>Don't Pop My Bubble</title>
+  </head>
+  <body>
+    <h1>Don't Pop My Bubble</h1>
 
     <div class="highscores">
+      <div id="input-form">
+        <input
+          class="inputname"
+          onchange="getplayername"
+          type="text"
+          name="username"
+          placeholder="Enter name here"
+        />
+        <button id="send-btn" class="btn">Play</button>
+      </div>
 
-        <div id="input-form">
-            <input class='inputname' onchange='getplayername' type="text" name="username" placeholder="Enter name here" />
-            <button id="send-btn" class="btn">Play</button>
-        </div>
-
-        <h2>High Scores👇</h2>
-        <ul class="top5">
-           
-        </ul>
-
+      <h2>High Scores</h2>
+      <ul class="top5"></ul>
     </div>
-
-    <div class="container">
-        <h2 class="neon">How to Play🎮</h2>
-        <div class="controls">
-          <img src="./images/arrows.png" alt="keys" width="200" height="100">
-        </div>
-        <!-- <button class="btn">
-            <a href="./intro.html">PLAY</a>
-        </button> -->
-    </div>
-
-    <h3>Click the 🎮 to play music
-        <span
-           class="txt-rotate"
-           data-period="2000"
-           data-rotate='[ "Jose 😀", "Niko 😃", "Valerie 😐", "Blake 🥱", "Leanne 🤔", "Mahim 🤫", "Myllie 😌", "Mario 😬", "Voji 🤨", "Semra 🤓", "Amanda 🥺", "Brandon 😎"]'></span>
-      </h3>
 
     <!-- <img src="./images/backgroundbubb.jpg" value="PLAY" onclick="play()"> -->
-    <audio src="./audio/Adventure-320bit.mp3" type="audio/mp3" id="my_audio" loop="loop"></audio>
-    
+    <audio
+      src="./audio/Adventure-320bit.mp3"
+      type="audio/mp3"
+      id="my_audio"
+      loop="loop"
+    ></audio>
+
     <!-- <script type="text/javascript">
         window.onload = function () {
             document.getElementById("my_audio").play();
@@ -66,61 +58,68 @@
         });
     });
 </script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="highscore.js"></script>
-<script>
-    function play(){
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="highscore.js"></script>
+    <script>
+      function play() {
         let audio = document.getElementById("my_audio");
         audio.play();
-    }
-</script>
-<script>
-    var TxtRotate = function(el, toRotate, period) {
+      }
+    </script>
+    <script>
+      var TxtRotate = function (el, toRotate, period) {
         this.toRotate = toRotate;
         this.el = el;
         this.loopNum = 0;
         this.period = parseInt(period, 10) || 2000;
-        this.txt = '';
+        this.txt = "";
         this.tick();
         this.isDeleting = false;
       };
-      
-      TxtRotate.prototype.tick = function() {
+
+      TxtRotate.prototype.tick = function () {
         var i = this.loopNum % this.toRotate.length;
         var fullTxt = this.toRotate[i];
-      
+
         if (this.isDeleting) {
           this.txt = fullTxt.substring(0, this.txt.length - 1);
         } else {
           this.txt = fullTxt.substring(0, this.txt.length + 1);
         }
-      
-        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
-      
+
+        this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
+
         var that = this;
         var delta = 300 - Math.random() * 100;
-      
-        if (this.isDeleting) { delta /= 2; }
-      
+
+        if (this.isDeleting) {
+          delta /= 2;
+        }
+
         if (!this.isDeleting && this.txt === fullTxt) {
           delta = this.period;
           this.isDeleting = true;
-        } else if (this.isDeleting && this.txt === '') {
+        } else if (this.isDeleting && this.txt === "") {
           this.isDeleting = false;
           this.loopNum++;
           delta = 500;
         }
-      
-        setTimeout(function() {
+
+        setTimeout(function () {
           that.tick();
         }, delta);
       };
-      
-      window.onload = function() {
-        var elements = document.getElementsByClassName('txt-rotate');
-        for (var i=0; i<elements.length; i++) {
-          var toRotate = elements[i].getAttribute('data-rotate');
-          var period = elements[i].getAttribute('data-period');
+
+      window.onload = function () {
+        var elements = document.getElementsByClassName("txt-rotate");
+        for (var i = 0; i < elements.length; i++) {
+          var toRotate = elements[i].getAttribute("data-rotate");
+          var period = elements[i].getAttribute("data-period");
           if (toRotate) {
             new TxtRotate(elements[i], JSON.parse(toRotate), period);
           }
@@ -128,37 +127,37 @@
         // INJECT CSS
         var css = document.createElement("style");
         css.type = "text/css";
-        css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+        css.innerHTML =
+          ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
         document.body.appendChild(css);
       };
 
-      document.querySelector('#send-btn').onclick = function () {
-        window.location.replace(`./intro.html?name=${document.querySelector('.inputname').value}`)
-      }
-      let data = gethighscore()
-      console.log(data)
-      data.then(scores => { 
-        console.log(scores)
-        let sortedScores = scores.sort((a,b)=>{
-          return b.finalScore- a.finalScore 
-        })
-        console.log(sortedScores)
-        let html = ``
-        for (let i=0; i < 5; i++) {
-          html += `<li>${i+1}. ${sortedScores[i].name} ${sortedScores[i].finalScore}</li>`
+      document.querySelector("#send-btn").onclick = function () {
+        window.location.replace(
+          `./intro.html?name=${document.querySelector(".inputname").value}`
+        );
+      };
+      let data = gethighscore();
+      console.log(data);
+      data.then((scores) => {
+        console.log(scores);
+        let sortedScores = scores.sort((a, b) => {
+          return b.finalScore - a.finalScore;
+        });
+        console.log(sortedScores);
+        let html = ``;
+        for (let i = 0; i < 5; i++) {
+          html += `<li>${i + 1}. ${sortedScores[i].name} ${
+            sortedScores[i].finalScore
+          }</li>`;
         }
-        document.querySelector(`.top5`).innerHTML = html
-        // 
+        document.querySelector(`.top5`).innerHTML = html;
+        //
         //     <li class="hs2">2. </li>
         //     <li class="hs3">3. </li>
         //     <li class="hs4">4. </li>
         //     <li class="hs5">5. </li>
-        
-      })
-</script>
-
-</body>
-
-
+      });
+    </script>
+  </body>
 </html>
-
